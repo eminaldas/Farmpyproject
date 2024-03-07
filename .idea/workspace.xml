@@ -1,25 +1,288 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9623c146-da84-46cd-94a1-70e2915e54b7" name="Changes" comment="" />
+    <list default="true" id="9623c146-da84-46cd-94a1-70e2915e54b7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/graphics/character/down/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_axe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_axe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_hoe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_hoe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_idle/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_idle/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/down_water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_axe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_axe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_hoe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_hoe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_idle/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_idle/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/left_water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_axe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_axe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_hoe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_hoe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_idle/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_idle/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/right_water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_axe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_axe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_hoe/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_hoe/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_idle/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_idle/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/character/up_water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Bridge.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Collision.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Fences.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Grass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Hills.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/House Decoration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/House.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Paths.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Plant Decoration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Water Decoration.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/Water.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/environment/interaction.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/apple.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/corn/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/corn/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/corn/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/corn/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/tomato/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/tomato/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/tomato/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/fruit/tomato/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/bush.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/flower.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/merchant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/mushroom.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/mushrooms.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/stump_medium.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/stump_small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/sunflower.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/tree_medium.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/objects/tree_small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/overlay/axe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/overlay/corn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/overlay/hoe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/overlay/tomato.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/overlay/water.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/drops/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/drops/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/drops/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/floor/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/floor/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/rain/floor/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/bl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/bm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/br.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/l.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/lm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/lr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/lrb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/lrt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/o.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/r.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/rm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/soil.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/t.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tbl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tbr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/tr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil_water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil_water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/soil_water/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/stumps/large.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/stumps/small.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/water/0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/water/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/water/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/water/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/world/ground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/Chicken_Animations_AsepriteFile.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/Chicken_Animations_GifPreview.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/Free Chicken Sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/chicken blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/chicken brown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/chicken default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/chicken green.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken/chicken red.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Animations_AspriteFile.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Animations_GifPreview.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Brown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Green.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Baby/Chicken_Baby_Red.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Chicken_Egg_Animations_AspriteFile.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Chicken_Egg_Animations_GifPreview.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Egg_Spritesheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Egg_Spritesheet_Brown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Egg_Spritesheet_Green.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Egg_Spritesheet_blue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Chicken_Egg/Egg_Spritesheet_red.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Brown cow animations.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Free Cow Sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Green cow animation sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Light cow animations.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Pink cow animation sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/Purple cow animation sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/all cow animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow/all cow animations.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/all baby cow animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/all baby cow animations.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/baby brown cow animations sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/baby green cow animations sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/baby light cow animations sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/baby pink cow animations sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Animals/Cow_Baby/baby purple cow animations sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/Basic Charakter Actions.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/Basic Charakter Spritesheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/Charakter Spritesheet and animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/Premium Charakter Spritesheet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/Tools.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/water from water can frames and animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Characters/water from wateringcan frames.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Boats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Farming Plants.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/All items.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/Egg items.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/Farming Plants items.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/Milk and grass item Simple.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/Milk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/fruit and berries items.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/item shadow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Items/tools and meterials.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Mushrooms, Flowers, Stones.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Piknik basket.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Piknik blanket.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/Fruit animations without tree/no_tree_appel_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/Fruit animations without tree/no_tree_orange_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/Fruit animations without tree/no_tree_peach_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/Fruit animations without tree/no_tree_pear_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree preview animations.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree preview animations.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree_appel_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree_orange_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree_peach_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree_pear_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Tree animations/tree_sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Trees, stumps and bushes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Water Objects.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/Water well.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/signs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Objects/work station.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Sprout Lands color pallet/Sprout Lands defautlt palette snip.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Sprout Lands color pallet/Sprout Lands defautlt palette.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Sprout Lands color pallet/Sprout Lands defautlt palette.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Animal Structures/Barn structures.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Animal Structures/Chikcen_Houses.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Animal Structures/Water tray.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Basic_Furniture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Fence gates animation sprites .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Fences.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Mailbox Animation Frames.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Paths.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/STONE PATH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Wood Bridge.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/Wooden House.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/door animation sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/Building parts/mailbox animation.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Bitmask references 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Bitmask references 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Bitmask references gif.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Bush_Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Grass_Hill_Tiles_Slopes_v2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Grass_Hills_Tiles_v2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Grass_Tile_Layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Grass_Tile_Layers2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Grass_Tiles_v2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Darker_Soil_Ground_Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Grass_Hill_Tiles_Slopes v.2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Grass_Hill_Tiles_v2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Grass_Tile_Layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Grass_Tile_layers2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Grass_tiles_v2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Soil_Ground_Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/Stone_Ground_Tiles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/TILE LAYER EXAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/TILES PREVIEW v.2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/New tiles/TILES PREVIEW.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Old tiles/Grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Old tiles/Hills.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/Old tiles/Tilled_Dirt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water animation.aseprite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/graphics/Tilesets/ground tiles/water frames/Water_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support.py" beforeDir="false" afterPath="$PROJECT_DIR$/support.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2dMG1E4b7pOqREcyalzG9CcKpf1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.main.executor": "Run",
+    "Python.player.executor": "Run",
+    "Python.support.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -39,8 +302,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1709810317645</updated>
-      <workItem from="1709810320993" duration="3000" />
+      <workItem from="1709810320993" duration="142000" />
+      <workItem from="1709810569046" duration="1040000" />
+      <workItem from="1709814192421" duration="908000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Farmpyproject$player.coverage" NAME="player Coverage Results" MODIFIED="1709814788851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Farmpyproject$support.coverage" NAME="support Coverage Results" MODIFIED="1709814710276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Farmpyproject$main.coverage" NAME="main Coverage Results" MODIFIED="1709815054163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

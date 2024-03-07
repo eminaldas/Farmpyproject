@@ -1,9 +1,12 @@
 import pygame
 from settings import *
+from support import  *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,group):
         super().__init__(group)
+
+        self.import_assets()
 
     #genel işlemler
         self.image = pygame.Surface((32,64))
@@ -16,16 +19,16 @@ class Player(pygame.sprite.Sprite):
         self.speed = 200
 
     def import_assets(self):
-        self.animation ={
+        self.animations ={
             'up':[],'down':[],'left':[],'right':[],
             'right_idle':[],'left_idle':[],'up_idle':[],'down_idle':[],
             'right_hoe':[],'left_hoe':[],'up_hoe':[],'down_hoe':[],
             'right_axe':[],'left_axe':[],'up_axe':[],'down_axe':[],
             'right_water':[],'left_water':[],'up_water':[],'down_water':[]
         }
-        for animation in self.animation.keys():
-            full_path = './images/graphics/Characters/'+animation
-            self.animation[animation] = import_folder(full_path)
+        for animation in self.animations.keys():
+            full_path = './graphics/character/'+animation
+            self.animations[animation] = import_folder(full_path)
 
     def input(self):
         #burada karakterin hareket etmesi için gerekli işlemler yapılıyor
