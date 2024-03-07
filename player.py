@@ -39,7 +39,8 @@ class Player(pygame.sprite.Sprite):
 
     def get_status(self):
         if self.direction.magnitude() == 0:
-            self.status = self.status.split('_')[0]+'_idle'
+            self.status = self.status.split('_')[0]+'_idle' #oyuncu animasyon ayarları
+
 
     def input(self):
         #burada karakterin hareket etmesi için gerekli işlemler yapılıyor
@@ -78,6 +79,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.centery = self.pos.y
 
     def update(self,dt):
+        #fonksiyonlar çağırılıyor
         self.input()
         self.get_status()
         self.move(dt)
