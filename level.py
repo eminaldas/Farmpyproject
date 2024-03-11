@@ -1,5 +1,7 @@
 import  pygame
+from settings import *
 from player import Player
+from overlay import Overlay
 
 class level:
     def __init__(self):
@@ -10,6 +12,7 @@ class level:
         self.all_sprites = pygame.sprite.Group()
                                                                                 #tüm canlıların çilmiesinde kolaylık sağlar
         self.setup()
+        self.overlay = Overlay(self.player)
     def setup(self):
         self.player = Player((640,360),self.all_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
 
