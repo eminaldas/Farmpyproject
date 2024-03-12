@@ -18,7 +18,6 @@ class Game:
             self.level.run(dt)
             pygame.display.update()
 
-if __name__ == "__main__":
-                                                                                # Oyunu başlatmak ve çalıştırmak için ana başlangıç noktası.
+if __name__ == "__main__":                                                                           # Oyunu başlatmak ve çalıştırmak için ana başlangıç noktası.
     game = Game()
     game.run()

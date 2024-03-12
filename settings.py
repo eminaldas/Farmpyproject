@@ -8,7 +8,7 @@ TILE_SIZE = 64
 #kaplamaların pozisyonları
 OVERLAY_POSITON = {
     'tool': (40,SCREEN_HEIGHT-15),
-    'seed': (70,SCREEN_WIDTH-5)
+    'seed': (70,SCREEN_HEIGHT-5)
 }
 
 #aletlerin kullanıcı üzerindeki konumu

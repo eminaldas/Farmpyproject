@@ -21,3 +21,4 @@ class level:
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk
         self.all_sprites.draw(self.display_surface)                             #oyuncunun ekrana çizilmesi
         self.all_sprites.update(dt)                                             #ekran yenilenirken güncellenmesi
+        self.overlay.display()
