@@ -30,7 +30,6 @@ class level:
         #ekran yenilenirken güncellenmesi
         self.overlay.display()
 
-
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
         super().__init__()
