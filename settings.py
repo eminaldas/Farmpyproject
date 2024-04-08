@@ -1,8 +1,8 @@
 from pygame.math import Vector2
 
 #Ekran için veriler
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900
 TILE_SIZE = 64
 
 #kaplamaların pozisyonları

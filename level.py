@@ -3,6 +3,7 @@ from settings import *
 from player import Player
 from overlay import Overlay
 from sprites import Generic
+from pytmx.util_pygame import load_pygame
 
 class level:
     def __init__(self):
@@ -15,6 +16,9 @@ class level:
         self.setup()
         self.overlay = Overlay(self.player)
     def setup(self):
+       # tmx_data = load_pygame('./data/map.tmx')
+
+      #  tmx_data.get_layer_by_name('HouseFurnitureBottom').tiles()
         self.player = Player((640,360),self.all_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
         Generic(pos =(0,0),
                 surf = pygame.image.load('./graphics/world/ground.png'),
