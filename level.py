@@ -47,7 +47,13 @@ class level:
         for obj in tmx_data.get_layer_by_name('Trees'):
             Tree((obj.x, obj.y), obj.image, [self.all_sprites,self.collision_sprites], obj.name)
 
-        self.player = Player((640, 360), self.all_sprites,self.collision_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
+        # collion tiles
+        for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
+            Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface((TILE_SIZE, TILE_SIZE)), self.collision_sprites)
+
+        for obj in tmx_data.get_layer_by_name('Player'):
+            if obj.name == 'Start':
+                self.player = Player((obj.x, obj.y), self.all_sprites,self.collision_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
         Generic(pos =(0, 0),
                 surf = pygame.image.load('./graphics/world/ground.png'),
                 groups = self.all_sprites,
