@@ -1,10 +1,10 @@
 import pygame
 from settings import *
-from support import  *
+from support import *
 from timer import Timer
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,pos,group,collision_sprites):
+    def __init__(self,pos,group,collision_sprites,tree_sprites):
         super().__init__(group)
 
         self.import_assets()#karakterin bütün pozisyonları için hazırlanan görseller buradan alınıyor
@@ -41,10 +41,26 @@ class Player(pygame.sprite.Sprite):
         self.seeds_index = 0
         self.selected_seed = self.seeds[self.seeds_index]
 
+        #etkileşimler
+        self.tree_sprites = tree_sprites
+
     def use_tool(self):
-        pass
+        if self.selected_tool == 'hoe':
+            pass
+        if self.selected_tool == 'axe':
+            for tree in self.tree_sprites.sprites():
+                if tree.rect.collidepoint(self.target_pos):
+                    tree.damage()
+        if self.selected_tool == 'water':
+            pass
+
+    def get_target_pos(self):
+        self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
+
+
     def use_seed(self):
         pass
+
     def import_assets(self):
         self.animations ={
             'up':[],'down':[],'left':[],'right':[],
@@ -73,6 +89,7 @@ class Player(pygame.sprite.Sprite):
     def update_timers(self):
         for timer in self.timers.values():
             timer.update()
+
     def input(self):
         #burada karakterin hareket etmesi için gerekli işlemler yapılıyor
         keys = pygame.key.get_pressed()
@@ -157,12 +174,13 @@ class Player(pygame.sprite.Sprite):
         self.hitbox.centery  = round(self.pos.y)
         self.rect.centery = self.hitbox.centery
         self.collision('vertical')
+
     def update(self,dt):
         #fonksiyonlar çağırılıyor
         self.input()
         self.get_status()
         self.update_timers()
-
+        self.get_target_pos()
         self.move(dt)
         self.animated(dt)
 
