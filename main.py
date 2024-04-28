@@ -8,6 +8,7 @@ class Game:
         pygame.display.set_caption("sporut land")
         self.clock = pygame.time.Clock()                                        #oyunun FPS ayarı buradan yapılıyor
         self.level = level()
+
     def run(self):                                                              #oyunun başladığı kısım
         while True:                                                             #oyunun sonsuz dönküye girmesi için
             for event in pygame.event.get():                                    #burada pygame içindeki işlemleri event içine atılıyor
@@ -17,6 +18,7 @@ class Game:
             dt = self.clock.tick()/1000
             self.level.run(dt)
             pygame.display.update()
+
 
 if __name__ == "__main__":                                                                           # Oyunu başlatmak ve çalıştırmak için ana başlangıç noktası.
     game = Game()
