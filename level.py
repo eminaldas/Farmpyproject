@@ -45,7 +45,11 @@ class level:
 
         # ağaçlar
         for obj in tmx_data.get_layer_by_name('Trees'):
-            Tree((obj.x, obj.y), obj.image, [self.all_sprites,self.collision_sprites,self.tree_sprites], obj.name)
+            Tree(pos = (obj.x, obj.y),
+                 surf = obj.image,
+                 groups = [self.all_sprites,self.collision_sprites,self.tree_sprites],
+                 name =  obj.name,
+                 player_add = self.player_add)
 
         # collion tiles
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
@@ -57,19 +61,21 @@ class level:
                                      group = self.all_sprites,
                                      collision_sprites=self.collision_sprites,
                                         tree_sprites= self.tree_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
-        Generic(pos =(0, 0),
+        Generic(pos =(576,576),
                 surf = pygame.image.load('./graphics/world/ground.png'),
                 groups = self.all_sprites,
                 z = LAYERS['ground']
                 )
 
-
+    def player_add(self,item):
+        self.player.item_inventory[item] +=1
     def run(self,dt):
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk
         self.all_sprites.custom_draw(self.player)
         self.all_sprites.update(dt)
         #ekran yenilenirken güncellenmesi
         self.overlay.display()
+        print(self.player.item_inventory)
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
@@ -88,10 +94,10 @@ class CameraGroup(pygame.sprite.Group):
                     offset_rect.center -= self.offset
                     self.display_surface.blit(sprite.image, offset_rect)
 
-                    if sprite == player:
-                        pygame.draw.rect(self.display_surface, 'red', offset_rect, 5)
-                        hitbox_rect = player.hitbox.copy()
-                        hitbox_rect.center = offset_rect.center
-                        pygame.draw.rect(self.display_surface, 'green', hitbox_rect, 5)
-                        target_pos = offset_rect.center + PLAYER_TOOL_OFFSET[player.status.split('_')[0]]
-                        pygame.draw.circle(self.display_surface, 'blue', target_pos, 5)
+                    #if sprite == player:
+                     #   pygame.draw.rect(self.display_surface, 'red', offset_rect, 5)
+                      #  hitbox_rect = player.hitbox.copy()
+                       # hitbox_rect.center = offset_rect.center
+                        #pygame.draw.rect(self.display_surface, 'green', hitbox_rect, 5)
+                   #     target_pos = offset_rect.center + PLAYER_TOOL_OFFSET[player.status.split('_')[0]]
+                    #    pygame.draw.circle(self.display_surface, 'blue', target_pos, 5)

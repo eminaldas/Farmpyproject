@@ -41,10 +41,18 @@ class Player(pygame.sprite.Sprite):
         self.seeds_index = 0
         self.selected_seed = self.seeds[self.seeds_index]
 
+        #envanter
+        self.item_inventory = {
+            'wood': 0,
+            'apple':0,
+            'corn': 0,
+            'tomato': 0
+        }
         #etkileşimler
         self.tree_sprites = tree_sprites
 
     def use_tool(self):
+        print("use_tools")
         if self.selected_tool == 'hoe':
             pass
         if self.selected_tool == 'axe':
