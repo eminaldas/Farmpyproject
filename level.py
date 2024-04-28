@@ -73,9 +73,8 @@ class level:
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk
         self.all_sprites.custom_draw(self.player)
         self.all_sprites.update(dt)
-        #ekran yenilenirken güncellenmesi
         self.overlay.display()
-        print(self.player.item_inventory)
+
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
