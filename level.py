@@ -2,9 +2,10 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic,Water,WildFlower,Tree
+from sprites import Generic,Water,WildFlower,Tree,Interaction
 from pytmx.util_pygame import load_pygame
 from support import *
+from transition import Transition
 
 class level:
     def __init__(self):
@@ -15,8 +16,11 @@ class level:
         self.all_sprites = CameraGroup()                                          #sprite group
         self.collision_sprites = pygame.sprite.Group()
         self.tree_sprites = pygame.sprite.Group()
+        self.interaction_sprites = pygame.sprite.Group()
+
         self.setup()
         self.overlay = Overlay(self.player)
+        self.transition = Transition(self.reset,self.player)
 
     def setup(self):
         tmx_data = load_pygame('./data/map.tmx')
@@ -60,7 +64,12 @@ class level:
                 self.player = Player(pos =(obj.x, obj.y),
                                      group = self.all_sprites,
                                      collision_sprites=self.collision_sprites,
-                                        tree_sprites= self.tree_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
+                                        tree_sprites= self.tree_sprites,
+                                        interaction = self.interaction_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
+            if obj.name == "Bed":
+                Interaction((obj.x,obj.y),(obj.width,obj.height),self.interaction_sprites,obj.name)
+
+     
         Generic(pos =(576,576),
                 surf = pygame.image.load('./graphics/world/ground.png'),
                 groups = self.all_sprites,
@@ -69,12 +78,23 @@ class level:
 
     def player_add(self,item):
         self.player.item_inventory[item] +=1
+    
+    def reset(self):
+        
+        #Agaçtaki Elmalar
+        for tree in self.tree_sprites.sprites():
+            for apple in tree.apple_sprites.sprites():
+                apple.kill()
+            tree.create_fruit()
+
     def run(self,dt):
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk
         self.all_sprites.custom_draw(self.player)
         self.all_sprites.update(dt)
         self.overlay.display()
 
+        if self.player.sleep:
+            self.transition.play()
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):

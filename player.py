@@ -4,7 +4,7 @@ from support import *
 from timer import Timer
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,pos,group,collision_sprites,tree_sprites):
+    def __init__(self,pos,group,collision_sprites,tree_sprites,interaction):
         super().__init__(group)
 
         self.import_assets()#karakterin bütün pozisyonları için hazırlanan görseller buradan alınıyor
@@ -50,6 +50,8 @@ class Player(pygame.sprite.Sprite):
         }
         #etkileşimler
         self.tree_sprites = tree_sprites
+        self.interaction = interaction
+        self.sleep = False
 
     def use_tool(self):
         print("use_tools")
@@ -101,7 +103,7 @@ class Player(pygame.sprite.Sprite):
     def input(self):
         #burada karakterin hareket etmesi için gerekli işlemler yapılıyor
         keys = pygame.key.get_pressed()
-        if not self.timers['tool use'].active:
+        if not self.timers['tool use'].active and not self.sleep:
             if keys[pygame.K_UP]:
                 self.direction.y = -1
                 self.status = 'up'
@@ -132,7 +134,7 @@ class Player(pygame.sprite.Sprite):
                 self.tool_index = self.tool_index if self.tool_index < len(self.tools) else 0
                 self.selected_tool = self.tools[self.tool_index]
 
-                # tohumların kullanımı
+            # tohumların kullanımı
             if keys[pygame.K_LCTRL]:
                 self.timers['seed use'].activate()
                 self.direction = pygame.math.Vector2()
@@ -145,7 +147,14 @@ class Player(pygame.sprite.Sprite):
                 self.seeds_index = self.seeds_index if self.seeds_index < len(self.seeds) else 0
                 self.selected_seed = self.seeds[self.seeds_index]
                 print(self.selected_seed)
-
+            if keys[pygame.K_RETURN]:
+                collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
+                if collided_interaction_sprite[0].name == 'Trader':
+                    pass
+                else:
+                    self.status = 'left_idle'
+                    self.sleep = True
+                
     def collision(self, direction):
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite, 'hitbox'):
