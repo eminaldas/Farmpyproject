@@ -6,6 +6,7 @@ from sprites import Generic,Water,WildFlower,Tree,Interaction
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
+from soil import SoilLayer
 
 class level:
     def __init__(self):
@@ -18,6 +19,7 @@ class level:
         self.tree_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
 
+        self.soil_layer = SoilLayer(self.all_sprites)
         self.setup()
         self.overlay = Overlay(self.player)
         self.transition = Transition(self.reset,self.player)
@@ -59,13 +61,15 @@ class level:
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
             Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface((TILE_SIZE, TILE_SIZE)), self.collision_sprites)
 
+        #player
         for obj in tmx_data.get_layer_by_name('Player'):
             if obj.name == 'Start':
                 self.player = Player(pos =(obj.x, obj.y),
                                      group = self.all_sprites,
                                      collision_sprites=self.collision_sprites,
                                         tree_sprites= self.tree_sprites,
-                                        interaction = self.interaction_sprites)                   #oyuncunun konumunu ekranda belirtip çiziyor
+                                        interaction = self.interaction_sprites,
+                                     soil_layer = self.soil_layer)                   #oyuncunun konumunu ekranda belirtip çiziyor
             if obj.name == "Bed":
                 Interaction((obj.x,obj.y),(obj.width,obj.height),self.interaction_sprites,obj.name)
 
@@ -80,7 +84,7 @@ class level:
         self.player.item_inventory[item] +=1
     
     def reset(self):
-        
+        self.soil_layer.remove_water()
         #Agaçtaki Elmalar
         for tree in self.tree_sprites.sprites():
             for apple in tree.apple_sprites.sprites():
