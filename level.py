@@ -8,6 +8,7 @@ from support import *
 from transition import Transition
 from soil import SoilLayer
 from sky import Rain
+from random import randint
 
 class level:
     def __init__(self):
@@ -27,7 +28,7 @@ class level:
 
         #sky
         self.rain = Rain(self.all_sprites)
-        self.raining = True
+        self.raining = randint(0,10) > 7
         self.soil_layer.raining = self.raining
 
     def setup(self):
@@ -93,7 +94,7 @@ class level:
     def reset(self):
         #soil
         self.soil_layer.remove_water()
-        #randomize rain
+        self.raining = randint(0,10) > 7
         self.soil_layer.raining = self.raining
         if self.raining:
             self.soil_layer.water_all()
