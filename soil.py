@@ -65,26 +65,25 @@ class SoilLayer:
                     if self.raining:
                         self.water_all()
 
-    def water(self,target_pos):
-        for soil_sprites in self.soil_sprites.sprites():
-            if soil_sprites.rect.collidepoint(target_pos):
-
-                x = soil_sprites.rect.x // TILE_SIZE
-                y = soil_sprites.rect.y // TILE_SIZE
-                self.grid[y][x].append('W')
-
-                pos  = soil_sprites.rect.topleft
-                surf = choice(self.water_surf)
-                WaterTile(pos  ,surf,[self.all_sprites,self.water_sprites])
+    def water(self, target_pos):
+        for soil_sprite in self.soil_sprites.sprites():
+            if soil_sprite.rect.collidepoint(target_pos):
+                x = (soil_sprite.rect.x - 576) // TILE_SIZE
+                y = (soil_sprite.rect.y - 576) // TILE_SIZE
+                if 'F' in self.grid[y][x]:  # Check if the soil is farmable
+                    self.grid[y][x].append('W')  # Mark the soil as watered
+                    pos = (x * TILE_SIZE + 576, y * TILE_SIZE + 576)
+                    surf = choice(self.water_surf)
+                    WaterTile(pos, surf, [self.all_sprites, self.water_sprites])
 
     def water_all(self):
         for index_row, row in enumerate(self.grid):
             for index_col, cell in enumerate(row):
                 if 'X' in cell and 'W' not in cell:
                     cell.append('W')
-                    x = index_col * TILE_SIZE
-                    y = index_row * TILE_SIZE
-                    WaterTile((x,y) ,choice(self.water_surf),[self.all_sprites,self.water_sprites])
+                    x = index_col * TILE_SIZE + 576
+                    y = index_row * TILE_SIZE + 576
+                    WaterTile((x, y), choice(self.water_surf), [self.all_sprites, self.water_sprites])
 
     def remove_water(self):
         for sprite in self.water_sprites.sprites():
