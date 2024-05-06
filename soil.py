@@ -12,11 +12,13 @@ class SoilTile(pygame.sprite.Sprite):
         self.z = LAYERS['soil']
 
 class WaterTile(pygame.sprite.Sprite):
+
     def __init__(self, pos, surf, groups):
         super().__init__(groups)
         self.image = surf
         self.rect = self.image.get_rect(topleft=pos)
         self.z = LAYERS['soil water']
+
 class SoilLayer:
     def __init__(self, all_sprites):
         self.all_sprites = all_sprites
@@ -56,9 +58,12 @@ class SoilLayer:
             if rect.collidepoint(point):
                 x = (rect.x - 576) // TILE_SIZE
                 y = (rect.y - 576) // TILE_SIZE
+
                 if x < len(self.grid[0]) and y < len(self.grid) and 'F' in self.grid[y][x]:
                     self.grid[y][x].append('X')
                     self.create_soil_tiles()
+                    if self.raining:
+                        self.water_all()
 
     def water(self,target_pos):
         for soil_sprites in self.soil_sprites.sprites():
@@ -72,6 +77,15 @@ class SoilLayer:
                 surf = choice(self.water_surf)
                 WaterTile(pos  ,surf,[self.all_sprites,self.water_sprites])
 
+    def water_all(self):
+        for index_row, row in enumerate(self.grid):
+            for index_col, cell in enumerate(row):
+                if 'X' in cell and 'W' not in cell:
+                    cell.append('W')
+                    x = index_col * TILE_SIZE
+                    y = index_row * TILE_SIZE
+                    WaterTile((x,y) ,choice(self.water_surf),[self.all_sprites,self.water_sprites])
+
     def remove_water(self):
         for sprite in self.water_sprites.sprites():
             sprite.kill()
@@ -80,6 +94,7 @@ class SoilLayer:
             for cell in row:
                 if 'W' in cell:
                     cell.remove('W')
+    
     def create_soil_tiles(self):
         self.soil_sprites.empty()
         for index_row, row in enumerate(self.grid):

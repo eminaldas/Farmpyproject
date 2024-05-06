@@ -7,14 +7,15 @@ from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
 from soil import SoilLayer
+from sky import Rain
 
 class level:
     def __init__(self):
-                                                                                #get the display surface
+        #get the display surface
         self.display_surface = pygame.display.get_surface()
 
-
-        self.all_sprites = CameraGroup()                                          #sprite group
+        #sprite group
+        self.all_sprites = CameraGroup()                                         
         self.collision_sprites = pygame.sprite.Group()
         self.tree_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
@@ -23,6 +24,11 @@ class level:
         self.setup()
         self.overlay = Overlay(self.player)
         self.transition = Transition(self.reset,self.player)
+
+        #sky
+        self.rain = Rain(self.all_sprites)
+        self.raining = True
+        self.soil_layer.raining = self.raining
 
     def setup(self):
         tmx_data = load_pygame('./data/map.tmx')
@@ -84,7 +90,13 @@ class level:
         self.player.item_inventory[item] +=1
     
     def reset(self):
+        #soil
         self.soil_layer.remove_water()
+        #randomize rain
+        self.soil_layer.raining = self.raining
+        if self.raining:
+            self.soil_layer.water_all()
+
         #Agaçtaki Elmalar
         for tree in self.tree_sprites.sprites():
             for apple in tree.apple_sprites.sprites():
@@ -97,6 +109,11 @@ class level:
         self.all_sprites.update(dt)
         self.overlay.display()
 
+        #rain 
+        if self.raining:
+            self.rain.update()
+
+        #transition overlay
         if self.player.sleep:
             self.transition.play()
 
