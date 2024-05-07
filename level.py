@@ -21,7 +21,7 @@ class level:
         self.tree_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
 
-        self.soil_layer = SoilLayer(self.all_sprites)
+        self.soil_layer = SoilLayer(self.all_sprites,self.collision_sprites)
         self.setup()
         self.overlay = Overlay(self.player)
         self.transition = Transition(self.reset,self.player)
@@ -90,20 +90,23 @@ class level:
 
     def player_add(self,item):
         self.player.item_inventory[item] +=1
-    
+
     def reset(self):
-        #soil
+        self.soil_layer.update_plants()
+
+
         self.soil_layer.remove_water()
-        self.raining = randint(0,10) > 7
+        self.raining = randint(0, 10) > 7
         self.soil_layer.raining = self.raining
         if self.raining:
             self.soil_layer.water_all()
 
-        #Agaçtaki Elmalar
+        # Ağaçtaki Elmaları ve diğer ağaç özelliklerini resetle
         for tree in self.tree_sprites.sprites():
-            for apple in tree.apple_sprites.sprites():
-                apple.kill()
-            tree.create_fruit()
+            if isinstance(tree, Tree):  # Sadece Tree türündeki nesneler üzerinde işlem yap
+                for apple in tree.apple_sprites.sprites():
+                    apple.kill()
+                tree.create_fruit()
 
     def run(self,dt):
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk

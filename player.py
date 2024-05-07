@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from support import *
 from timer import Timer
+from sprites import Tree
 
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,group,collision_sprites,tree_sprites,interaction,soil_layer):
@@ -57,11 +58,11 @@ class Player(pygame.sprite.Sprite):
     def use_tool(self):
         if self.selected_tool == 'hoe':
             self.soil_layer.get_hit(self.target_pos)
-        if self.selected_tool == 'axe':
+        elif self.selected_tool == 'axe':
             for tree in self.tree_sprites.sprites():
-                if tree.rect.collidepoint(self.target_pos):
+                if tree.rect.collidepoint(self.target_pos) and isinstance(tree, Tree):
                     tree.damage()
-        if self.selected_tool == 'water':
+        elif self.selected_tool == 'water':
             self.soil_layer.water(self.target_pos)
 
     def get_target_pos(self):
@@ -69,7 +70,7 @@ class Player(pygame.sprite.Sprite):
 
 
     def use_seed(self):
-        pass
+        self.soil_layer.plant_seed(self.target_pos,self.selected_seed)
 
     def import_assets(self):
         self.animations ={
@@ -146,7 +147,6 @@ class Player(pygame.sprite.Sprite):
                 self.seeds_index+=1
                 self.seeds_index = self.seeds_index if self.seeds_index < len(self.seeds) else 0
                 self.selected_seed = self.seeds[self.seeds_index]
-                print(self.selected_seed)
             if keys[pygame.K_RETURN]:
                 collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
                 if collided_interaction_sprite[0].name == 'Trader':

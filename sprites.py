@@ -50,78 +50,81 @@ class WildFlower(Generic):
 
 
 class Particle(Generic):
-    def __init__(self, pos, surf, groups, z, duration=200):
+    def __init__(self, pos, surf, groups, z, duration=200, moving=False):
         super().__init__(pos, surf, groups, z)
         self.start_time = pygame.time.get_ticks()
         self.duration = duration
-
-        # white surface
-        mask_surf = pygame.mask.from_surface(self.image)
-        new_surf = mask_surf.to_surface()
-        new_surf.set_colorkey((0, 0, 0))
-        self.image = new_surf
+        self.moving = moving
+        if self.moving:
+            self.pos = pygame.math.Vector2(self.rect.topleft)
+            self.direction = pygame.math.Vector2(randint(-2, 2), -3)  # Randomize the direction a bit for more natural movement
+            self.speed = randint(50, 100)  # Slower movement for particles
 
     def update(self, dt):
-        current_time = pygame.time.get_ticks()
-        if current_time - self.start_time > self.duration:
+        if self.moving:
+            self.pos += self.direction * self.speed * dt
+            self.rect.topleft = (round(self.pos.x), round(self.pos.y))
+        if pygame.time.get_ticks() - self.start_time > self.duration:
             self.kill()
-
 
 class Tree(Generic):
     def __init__(self, pos, surf, groups, name, player_add):
         super().__init__(pos, surf, groups)
-
-        # tree attributes
         self.health = 5
         self.alive = True
         stump_path = f'./graphics/stumps/{"small" if name == "Small" else "large"}.png'
         self.stump_surf = pygame.image.load(stump_path).convert_alpha()
         self.invul_timer = Timer(200)
-
-        # apples
         self.apple_surf = pygame.image.load('./graphics/fruit/apple.png')
         self.apple_pos = APPLE_POS[name]
         self.apple_sprites = pygame.sprite.Group()
         self.create_fruit()
-
         self.player_add = player_add
 
+    def create_fruit(self):
+        if self.alive:  # Meyve yalnızca ağaç sağken üretilir
+            for pos in self.apple_pos:
+                if randint(0, 10) < 2:  # Meyve üretim ihtimali
+                    x = pos[0] + self.rect.left
+                    y = pos[1] + self.rect.top
+                    Generic(
+                        pos=(x, y),
+                        surf=self.apple_surf,
+                        groups=[self.apple_sprites, self.groups()],
+                        z=LAYERS['fruit'])
+
     def damage(self):
-
-        # damaging the tree
         self.health -= 1
-
-        # remove an apple
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())
             Particle(
                 pos=random_apple.rect.topleft,
                 surf=random_apple.image,
-                groups=self.groups()[0],
-                z=LAYERS['fruit'])
+                groups=self.groups(),
+                z=LAYERS['fruit'],
+                duration=300,
+                moving=True)
             self.player_add('apple')
             random_apple.kill()
 
+        self.check_death()
+
     def check_death(self):
-        if self.health <= 0:
-            Particle(self.rect.topleft, self.image, self.groups()[0], LAYERS['fruit'], 300)
+        if self.health <= 0 and self.alive:
+            Particle(
+                pos=self.rect.topleft,
+                surf=self.image,
+                groups=self.groups(),
+                z=LAYERS['fruit'],
+                duration=300,
+                moving=False)
             self.image = self.stump_surf
             self.rect = self.image.get_rect(midbottom=self.rect.midbottom)
-            self.hitbox = self.rect.copy().inflate(-10, -self.rect.height * 0.6)
+            self.hitbox = self.rect.copy().inflate(-10,-self.rect.height*0.6)
+
             self.alive = False
             self.player_add('wood')
 
     def update(self, dt):
-        if self.alive:
-            self.check_death()
+        self.invul_timer.update()
 
-    def create_fruit(self):
-        for pos in self.apple_pos:
-            if randint(0, 10) < 2:
-                x = pos[0] + self.rect.left
-                y = pos[1] + self.rect.top
-                Generic(
-                    pos=(x, y),
-                    surf=self.apple_surf,
-                    groups=[self.apple_sprites, self.groups()[0]],
-                    z=LAYERS['fruit'])
