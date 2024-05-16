@@ -2,13 +2,14 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic,Water,WildFlower,Tree,Interaction
+from sprites import Generic,Water,WildFlower,Tree,Interaction,Particle
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
 from soil import SoilLayer
-from sky import Rain
+from sky import Rain, Sky
 from random import randint
+from menu import Menu
 
 class level:
     def __init__(self):
@@ -30,6 +31,10 @@ class level:
         self.rain = Rain(self.all_sprites)
         self.raining = randint(0,10) > 7
         self.soil_layer.raining = self.raining
+        self.sky = Sky()
+
+        self.menu = Menu(self.player,self.toggle_shop)
+        self.shop_active = False
 
     def setup(self):
         tmx_data = load_pygame('./data/map.tmx')
@@ -77,11 +82,13 @@ class level:
                                      collision_sprites=self.collision_sprites,
                                         tree_sprites= self.tree_sprites,
                                         interaction = self.interaction_sprites,
-                                     soil_layer = self.soil_layer)                   #oyuncunun konumunu ekranda belirtip çiziyor
+                                     soil_layer = self.soil_layer,
+                                     toggle_shop = self.toggle_shop)                   #oyuncunun konumunu ekranda belirtip çiziyor
             if obj.name == "Bed":
                 Interaction((obj.x,obj.y),(obj.width,obj.height),self.interaction_sprites,obj.name)
 
-     
+            if obj.name == 'Trader':
+                Interaction((obj.x,obj.y),(obj.width,obj.height),self.interaction_sprites,obj.name)
         Generic(pos =(576,576),
                 surf = pygame.image.load('./graphics/world/ground.png'),
                 groups = self.all_sprites,
@@ -90,6 +97,9 @@ class level:
 
     def player_add(self,item):
         self.player.item_inventory[item] +=1
+
+    def toggle_shop(self):
+        self.shop_active = not self.shop_active
 
     def reset(self):
         self.soil_layer.update_plants()
@@ -108,15 +118,31 @@ class level:
                     apple.kill()
                 tree.create_fruit()
 
+        self.sky.start_color = [255,255,255]
+
+    def plant_collisions(self):
+        if self.soil_layer.plant_sprites:
+            for plant in self.soil_layer.plant_sprites.sprites():
+                if plant.harvestable and plant.rect.colliderect(self.player.hitbox):
+                    self.player_add(plant.plant_type)
+                    plant.kill()
+                   # Particle(plant.rect.topleft,plant.image,self.all_sprites,z = LAYERS['main'])
+                    self.soil_layer.grid[(plant.rect.centery - 576) // TILE_SIZE][(plant.rect.centerx - 576) // TILE_SIZE].remove('P')
+
     def run(self,dt):
         self.display_surface.fill('black')                                      #ekran arka plana verilen renk
         self.all_sprites.custom_draw(self.player)
-        self.all_sprites.update(dt)
-        self.overlay.display()
 
-        #rain 
-        if self.raining:
+        if self.shop_active:
+            self.menu.update()
+        else:
+            self.all_sprites.update(dt)
+            self.plant_collisions()
+
+        self.overlay.display()
+        if self.raining and not self.shop_active:
             self.rain.update()
+        self.sky.display(dt)
 
         #transition overlay
         if self.player.sleep:

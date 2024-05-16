@@ -1,10 +1,8 @@
-import pygame
-from pygame.examples import grid
-
 from settings import *
 from pytmx.util_pygame import load_pygame
 from support import *
 from random import choice
+
 
 class SoilTile(pygame.sprite.Sprite):
     def __init__(self, pos, surf, groups):
@@ -13,6 +11,7 @@ class SoilTile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=pos)
         self.z = LAYERS['soil']
 
+
 class WaterTile(pygame.sprite.Sprite):
 
     def __init__(self, pos, surf, groups):
@@ -20,6 +19,7 @@ class WaterTile(pygame.sprite.Sprite):
         self.image = surf
         self.rect = self.image.get_rect(topleft=pos)
         self.z = LAYERS['soil water']
+
 
 class Plant(pygame.sprite.Sprite):
     def __init__(self, plant_type, groups, soil,check_watered):
@@ -49,6 +49,7 @@ class Plant(pygame.sprite.Sprite):
             if self.age >= self.max_age:
                 self.age = self.max_age
                 self.harvestable = True
+                print(self.harvestable)
 
             self.image = self.frames[int(self.age)]
             self.rect = self.image.get_rect(midbottom=self.soil.rect.midbottom + pygame.math.Vector2(0, self.y_offset))
@@ -138,6 +139,7 @@ class SoilLayer:
         cell  = self.grid[y][x]
         is_watered ='W' in cell
         return is_watered
+
     def plant_seed(self, target_pos, seed):
         for soil_sprite in self.soil_sprites.sprites():
             if soil_sprite.rect.collidepoint(target_pos):
@@ -152,7 +154,6 @@ class SoilLayer:
     def update_plants(self):
         for plant in self.plant_sprites.sprites():
             plant.grow()
-
 
     def create_soil_tiles(self):
         self.soil_sprites.empty()

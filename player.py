@@ -5,7 +5,7 @@ from timer import Timer
 from sprites import Tree
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,pos,group,collision_sprites,tree_sprites,interaction,soil_layer):
+    def __init__(self,pos,group,collision_sprites,tree_sprites,interaction,soil_layer,toggle_shop):
         super().__init__(group)
 
         self.import_assets()#karakterin bütün pozisyonları için hazırlanan görseller buradan alınıyor
@@ -20,7 +20,7 @@ class Player(pygame.sprite.Sprite):
         #hareket özellikleri
         self.direction = pygame.math.Vector2()##
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.speed = 200
+        self.speed = 600
 
         #çarpışmalar
         self.hitbox = self.rect.copy().inflate((-126, -70))
@@ -49,11 +49,19 @@ class Player(pygame.sprite.Sprite):
             'corn': 0,
             'tomato': 0
         }
+
+        self.seed_inventory = {
+            'corn': 5,
+            'tomato':5
+        }
+        self.money = 200
+
         #etkileşimler
         self.tree_sprites = tree_sprites
         self.interaction = interaction
         self.sleep = False
         self.soil_layer = soil_layer
+        self.toggle_shop = toggle_shop
 
     def use_tool(self):
         if self.selected_tool == 'hoe':
@@ -147,10 +155,12 @@ class Player(pygame.sprite.Sprite):
                 self.seeds_index+=1
                 self.seeds_index = self.seeds_index if self.seeds_index < len(self.seeds) else 0
                 self.selected_seed = self.seeds[self.seeds_index]
+
+
             if keys[pygame.K_RETURN]:
                 collided_interaction_sprite = pygame.sprite.spritecollide(self,self.interaction,False)
                 if collided_interaction_sprite[0].name == 'Trader':
-                    pass
+                    self.toggle_shop()
                 else:
                     self.status = 'left_idle'
                     self.sleep = True
