@@ -63,6 +63,19 @@ class Player(pygame.sprite.Sprite):
         self.soil_layer = soil_layer
         self.toggle_shop = toggle_shop
 
+        # Sayaçları başlatma
+        self.hoe_sound_index = 0
+        self.axe_sound_index = 0
+        self.water_sound_index = 0
+
+        # Pygame başlatma
+        pygame.mixer.init()
+
+        # Ses dosyalarını yükleme
+        self.hoe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Hoe/hoe_sound_{i}.mp3') for i in range(1, 5)]
+        self.axe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Axe/axe_sound_{i}.mp3') for i in range(1, 5)]
+        self.water_sounds = [pygame.mixer.Sound(f'./data/Sounds/Water/water_sound_1.mp3')]
+
     def import_assets(self):
         self.animations = {
             'up': [], 'down': [], 'left': [], 'right': [],
@@ -78,6 +91,9 @@ class Player(pygame.sprite.Sprite):
     def use_tool(self):
         if self.selected_tool == 'hoe':
             self.soil_layer.get_hit(self.target_pos)
+            self.hoe_sounds[self.hoe_sound_index].play()
+            self.hoe_sound_index = (self.hoe_sound_index + 1) % len(self.hoe_sounds)
+            
         elif 'axe' in self.selected_tool:
             damage = 1
             if self.selected_tool == 'axe_2':
@@ -88,8 +104,13 @@ class Player(pygame.sprite.Sprite):
             for tree in self.tree_sprites.sprites():
                 if tree.rect.collidepoint(self.target_pos) and isinstance(tree, Tree):
                     tree.damage(damage)
+                    self.axe_sounds[self.axe_sound_index].play()
+                    self.axe_sound_index = (self.axe_sound_index + 1) % len(self.axe_sounds)
+                    
         elif self.selected_tool == 'water':
             self.soil_layer.water(self.target_pos)
+            self.water_sounds[self.water_sound_index].play()
+            self.water_sound_index = (self.water_sound_index + 1) % len(self.water_sounds)
 
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
