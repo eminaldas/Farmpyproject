@@ -75,6 +75,10 @@ class Player(pygame.sprite.Sprite):
         self.hoe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Hoe/hoe_sound_{i}.mp3') for i in range(1, 5)]
         self.axe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Axe/axe_sound_{i}.mp3') for i in range(1, 5)]
         self.water_sounds = [pygame.mixer.Sound(f'./data/Sounds/Water/water_sound_1.mp3')]
+        self.footstep_sounds = [pygame.mixer.Sound(f'./data/Sounds/Grass/Grass_hit{i}.mp3') for i in range(1, 5)]
+        
+        self.footstep_sound_index = 0
+        self.footstep_timer = Timer(200)  # Adjust the time interval as needed
 
     def import_assets(self):
         self.animations = {
@@ -118,7 +122,6 @@ class Player(pygame.sprite.Sprite):
                 if tree.rect.collidepoint(self.target_pos) and isinstance(tree, Tree):
                     tree.damage()
 
-
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]
 
@@ -142,6 +145,7 @@ class Player(pygame.sprite.Sprite):
     def update_timers(self):
         for timer in self.timers.values():
             timer.update()
+        self.footstep_timer.update()
 
     def input(self):
         # burada karakterin hareket etmesi için gerekli işlemler yapılıyor
@@ -164,6 +168,12 @@ class Player(pygame.sprite.Sprite):
                 self.status = 'left'
             else:
                 self.direction.x = 0
+
+            if self.direction.magnitude() != 0 and not self.footstep_timer.active:
+                self.footstep_sounds[self.footstep_sound_index].play()
+                self.footstep_sound_index = (self.footstep_sound_index + 1) % len(self.footstep_sounds)
+                self.footstep_timer.activate()
+
             # aletlerin kullanımı
             if keys[pygame.K_SPACE]:
                 self.timers['tool use'].activate()
@@ -192,7 +202,7 @@ class Player(pygame.sprite.Sprite):
 
             if keys[pygame.K_RETURN]:
                 collided_interaction_sprite = pygame.sprite.spritecollide(self, self.interaction, False)
-                if collided_interaction_sprite[0].name == 'Trader':
+                if collided_interaction_sprite and collided_interaction_sprite[0].name == 'Trader':
                     self.toggle_shop()
                 else:
                     self.status = 'left_idle'
