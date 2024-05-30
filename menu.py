@@ -30,6 +30,11 @@ class Menu:
             self.options.append('Empty')
 
         self.options += list(self.player.seed_inventory.keys())
+        while len(self.options) < 9:
+            self.options.append('Empty')
+
+        # Adding new axes
+        self.options += ['axe_2', 'axe_3']
         while len(self.options) < 12:
             self.options.append('Empty')
 
@@ -63,7 +68,10 @@ class Menu:
         self.text_surfs = {}
         for item in self.options:
             if item != 'Empty':
-                price = SALE_PRICES[item] if item in self.player.item_inventory else PURCHASE_PRICES[item]
+                if item in self.player.item_inventory:
+                    price = SALE_PRICES[item]
+                else:
+                    price = PURCHASE_PRICES[item]
                 self.text_surfs[item] = self.font.render(f'{price}', False, 'Black')
 
         self.menu_left = self.bg_rect.left + 103
@@ -107,10 +115,16 @@ class Menu:
 
                 # buy
                 elif current_item != 'Empty' and self.index > self.sell_border:
-                    seed_price = PURCHASE_PRICES[current_item]
-                    if self.player.money >= seed_price:
-                        self.player.seed_inventory[current_item] += 1
-                        self.player.money -= seed_price
+                    price = PURCHASE_PRICES[current_item]
+                    if self.player.money >= price:
+                        self.player.money -= price
+                        if current_item in self.player.seed_inventory:
+                            self.player.seed_inventory[current_item] += 1
+                        elif current_item.startswith('axe'):
+                            if 'axe' in self.player.tools:
+                                self.player.tools.remove('axe')
+                            self.player.tools.append(current_item)
+                            self.player.selected_tool = current_item
 
         # clamp the values
         self.index = max(0, min(self.index, len(self.options) - 1))
@@ -152,5 +166,3 @@ class Menu:
                     top_left = (self.menu_left + col * self.width,
                                 self.menu_top + row * self.height)
                     self.show_entry(item, top_left, self.index == cell_index)
-
-# Note: Ensure you have the background image in ./graphics/menu/ directory.

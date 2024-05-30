@@ -70,7 +70,7 @@ class Particle(Generic):
 class Tree(Generic):
     def __init__(self, pos, surf, groups, name, player_add):
         super().__init__(pos, surf, groups)
-        self.health = 5
+        self.health = 20
         self.alive = True
         stump_path = f'./graphics/stumps/{"small" if name == "Small" else "large"}.png'
         self.stump_surf = pygame.image.load(stump_path).convert_alpha()
@@ -93,8 +93,8 @@ class Tree(Generic):
                         groups=[self.apple_sprites, self.groups()],
                         z=LAYERS['fruit'])
 
-    def damage(self):
-        self.health -= 1
+    def damage(self, amount=1):
+        self.health -= amount
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())
             Particle(
@@ -120,7 +120,7 @@ class Tree(Generic):
                 moving=False)
             self.image = self.stump_surf
             self.rect = self.image.get_rect(midbottom=self.rect.midbottom)
-            self.hitbox = self.rect.copy().inflate(-10,-self.rect.height*0.6)
+            self.hitbox = self.rect.copy().inflate(-10, -self.rect.height * 0.6)
 
             self.alive = False
             self.player_add('wood')

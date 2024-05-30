@@ -50,8 +50,11 @@ SALE_PRICES = {
 
 #alış fiyatları
 PURCHASE_PRICES = {
-    'corn': 4,
-    'tomato': 5
+    'corn': 5,
+    'tomato': 7,
+    'axe_2': 200,
+    'axe_3': 1000,
+
 }
 APPLE_POS = {
 	'Small': [(18,17), (30,37), (12,50), (30,45), (20,30), (30,10)],

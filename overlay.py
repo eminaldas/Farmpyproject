@@ -9,10 +9,14 @@ class Overlay:
 
         # Setup for tools and seeds
         overlay_path = './graphics/overlay/'
-        self.tools_surf = {tool: pygame.image.load(f'{overlay_path}{tool}.png').convert_alpha() for tool in
-                           player.tools}
-        self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in
-                           player.seeds}
+        self.tools_surf = {
+            'hoe': pygame.image.load(f'{overlay_path}hoe.png').convert_alpha(),
+            'axe': pygame.image.load(f'{overlay_path}axe.png').convert_alpha(),
+            'axe_2': pygame.image.load(f'{overlay_path}axe_2.png').convert_alpha(),  # or axe_2.png if different image
+            'axe_3': pygame.image.load(f'{overlay_path}axe_3.png').convert_alpha(),  # or axe_3.png if different image
+            'water': pygame.image.load(f'{overlay_path}water.png').convert_alpha()
+        }
+        self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in player.seeds}
 
         # Inventory display settings
         self.tool_size = 70
@@ -59,7 +63,6 @@ class Overlay:
             self.text_alpha = max(0, self.text_alpha - 5)
 
     def draw_inventory(self):
-
         total_width = len(self.player.item_inventory) * self.tool_size
         start_x = (SCREEN_WIDTH - total_width) // 2
         y_pos = SCREEN_HEIGHT - self.tool_size - 20
