@@ -630,7 +630,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="Trees">
+ <objectgroup id="9" name="Trees" visible="0">
   <object id="179" name="Large" gid="148" x="1846" y="1482" width="96" height="124"/>
   <object id="180" name="Large" gid="148" x="1928" y="1038" width="96" height="124"/>
   <object id="181" name="Large" gid="148" x="2240" y="1392" width="96" height="124"/>
@@ -662,7 +662,7 @@
   <object id="207" name="Small" gid="149" x="2992" y="2436" width="56" height="116"/>
   <object id="208" name="Small" gid="149" x="1246" y="1462" width="56" height="116"/>
  </objectgroup>
- <objectgroup id="10" name="Decoration">
+ <objectgroup id="10" name="Decoration" visible="0">
   <object id="139" type="decor" gid="147" x="1226.17" y="1601.83" width="56" height="112"/>
   <object id="140" type="decor" gid="147" x="1308.17" y="1457.83" width="56" height="112"/>
   <object id="141" type="decor" gid="147" x="1396.17" y="1435.83" width="56" height="112"/>
@@ -729,7 +729,7 @@
   <object id="254" name="Trader" x="1471" y="955.667" width="192" height="131.333"/>
   <object id="256" name="Bed" x="1984.67" y="1979.33" width="63.6667" height="66.3333"/>
  </objectgroup>
- <objectgroup id="7" name="Objects">
+ <objectgroup id="7" name="Objects" visible="0">
   <object id="2" gid="147" x="1008" y="1524" width="56" height="112"/>
   <object id="3" gid="147" x="1032" y="1602" width="56" height="112"/>
   <object id="4" gid="147" x="898" y="2356" width="56" height="112"/>

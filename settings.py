@@ -1,25 +1,25 @@
 from pygame.math import Vector2
 
-#Ekran için veriler
+# Ekran için veriler
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 900
 TILE_SIZE = 64
 
-#kaplamaların pozisyonları
-OVERLAY_POSITON = {
-    'tool': (40,SCREEN_HEIGHT-15),
-    'seed': (70,SCREEN_HEIGHT-5)
+# Kaplamaların pozisyonları
+OVERLAY_POSITION = {
+    'tool': (40, SCREEN_HEIGHT - 15),
+    'seed': (70, SCREEN_HEIGHT - 5)
 }
 
-#aletlerin kullanıcı üzerindeki konumu
+# Aletlerin kullanıcı üzerindeki konumu
 PLAYER_TOOL_OFFSET = {
-    'left': Vector2(-50,40),
-    'right': Vector2(50,40),
-    'up': Vector2(0,-10),
-    'down': Vector2(0,50)
+    'left': Vector2(-50, 40),
+    'right': Vector2(50, 40),
+    'up': Vector2(0, -10),
+    'down': Vector2(0, 50)
 }
 
-#oyuna eklenecek katmanların sıralaması
+# Oyuna eklenecek katmanların sıralaması
 LAYERS = {
     'water': 0,
     'ground': 1,
@@ -34,13 +34,13 @@ LAYERS = {
     'rain drops': 10,
 }
 
-#bitkilerin büyüme hızı
+# Bitkilerin büyüme hızı
 GROW_SPEED = {
     'corn': 1,
     'tomato': 0.7
 }
 
-#satış fiyatları
+# Satış fiyatları
 SALE_PRICES = {
     'wood': 4,
     'apple': 2,
@@ -48,17 +48,16 @@ SALE_PRICES = {
     'tomato': 20
 }
 
-#alış fiyatları
+# Alış fiyatları
 PURCHASE_PRICES = {
     'corn': 5,
     'tomato': 7,
     'axe_2': 200,
     'axe_3': 1000,
     'scissors': 50
-
 }
+
 APPLE_POS = {
-	'Small': [(18,17), (30,37), (12,50), (30,45), (20,30), (30,10)],
-	'Large': [(30,24), (60,65), (50,50), (16,40),(45,50), (42,70)]
+    'Small': [(18, 17), (30, 37), (12, 50), (30, 45), (20, 30), (30, 10)],
+    'Large': [(30, 24), (60, 65), (50, 50), (16, 40), (45, 50), (42, 70)]
 }
-
