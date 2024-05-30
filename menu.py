@@ -30,11 +30,10 @@ class Menu:
             self.options.append('Empty')
 
         self.options += list(self.player.seed_inventory.keys())
-        while len(self.options) < 9:
+        while len(self.options) < 8:  # Make space for scissors
             self.options.append('Empty')
 
-        # Adding new axes
-        self.options += ['axe_2', 'axe_3']
+        self.options += ['axe_2', 'axe_3', 'scissors']  # Yeni aletler
         while len(self.options) < 12:
             self.options.append('Empty')
 
@@ -120,8 +119,8 @@ class Menu:
                         self.player.money -= price
                         if current_item in self.player.seed_inventory:
                             self.player.seed_inventory[current_item] += 1
-                        elif current_item.startswith('axe'):
-                            if 'axe' in self.player.tools:
+                        elif current_item.startswith('axe') or current_item == 'scissors':
+                            if current_item != 'scissors' and 'axe' in self.player.tools:
                                 self.player.tools.remove('axe')
                             self.player.tools.append(current_item)
                             self.player.selected_tool = current_item

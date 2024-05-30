@@ -93,7 +93,7 @@ class Tree(Generic):
                         groups=[self.apple_sprites, self.groups()],
                         z=LAYERS['fruit'])
 
-    def damage(self, amount=1):
+    def damage(self, amount=0):
         self.health -= amount
         if len(self.apple_sprites.sprites()) > 0:
             random_apple = choice(self.apple_sprites.sprites())

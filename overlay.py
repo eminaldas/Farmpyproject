@@ -14,6 +14,7 @@ class Overlay:
             'axe': pygame.image.load(f'{overlay_path}axe.png').convert_alpha(),
             'axe_2': pygame.image.load(f'{overlay_path}axe_2.png').convert_alpha(),  # or axe_2.png if different image
             'axe_3': pygame.image.load(f'{overlay_path}axe_3.png').convert_alpha(),  # or axe_3.png if different image
+            'scissors': pygame.image.load(f'{overlay_path}scissors.png').convert_alpha(),  # Yeni makas
             'water': pygame.image.load(f'{overlay_path}water.png').convert_alpha()
         }
         self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in player.seeds}
@@ -30,7 +31,7 @@ class Overlay:
         self.font = pygame.font.Font(None, 40)
 
     def draw_tools(self):
-        y_offset = SCREEN_HEIGHT - 3 * self.tool_size
+        y_offset = SCREEN_HEIGHT - 5* self.tool_size
         for index, tool in enumerate(self.player.tools):
             rect = pygame.Rect(10, y_offset + index * self.tool_size, self.tool_size, self.tool_size)
             pygame.draw.rect(self.display_surface, self.bar_color, rect)
@@ -43,7 +44,7 @@ class Overlay:
             self.display_surface.blit(tool_surf, tool_surf.get_rect(center=rect.center))
 
     def draw_seeds(self):
-        y_offset = SCREEN_HEIGHT - 6 * self.tool_size
+        y_offset = SCREEN_HEIGHT - 9 * self.tool_size
         for index, seed in enumerate(self.player.seeds):
             rect = pygame.Rect(10, y_offset + index * self.tool_size, self.tool_size, self.tool_size)
             pygame.draw.rect(self.display_surface, self.bar_color, rect)

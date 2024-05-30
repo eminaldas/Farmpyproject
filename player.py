@@ -82,6 +82,7 @@ class Player(pygame.sprite.Sprite):
             'right_idle': [], 'left_idle': [], 'up_idle': [], 'down_idle': [],
             'right_hoe': [], 'left_hoe': [], 'up_hoe': [], 'down_hoe': [],
             'right_axe': [], 'left_axe': [], 'up_axe': [], 'down_axe': [],
+            'right_scissors': [], 'left_scissors': [], 'up_scissors': [], 'down_scissors': [],
             'right_water': [], 'left_water': [], 'up_water': [], 'down_water': []
         }
         for animation in self.animations.keys():
@@ -111,6 +112,12 @@ class Player(pygame.sprite.Sprite):
             self.soil_layer.water(self.target_pos)
             self.water_sounds[self.water_sound_index].play()
             self.water_sound_index = (self.water_sound_index + 1) % len(self.water_sounds)
+
+        elif self.selected_tool == 'scissors':
+            for tree in self.tree_sprites.sprites():
+                if tree.rect.collidepoint(self.target_pos) and isinstance(tree, Tree):
+                    tree.damage()
+
 
     def get_target_pos(self):
         self.target_pos = self.rect.center + PLAYER_TOOL_OFFSET[self.status.split('_')[0]]

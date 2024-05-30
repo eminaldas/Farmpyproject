@@ -54,6 +54,7 @@ PURCHASE_PRICES = {
     'tomato': 7,
     'axe_2': 200,
     'axe_3': 1000,
+    'scissors': 50
 
 }
 APPLE_POS = {
