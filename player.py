@@ -67,7 +67,7 @@ class Player(pygame.sprite.Sprite):
         self.hoe_sound_index = 0
         self.axe_sound_index = 0
         self.water_sound_index = 0
-
+        self.scissors_sounds_index = 0
         # Pygame başlatma
         pygame.mixer.init()
 
@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
         self.axe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Axe/axe_sound_{i}.mp3') for i in range(1, 5)]
         self.water_sounds = [pygame.mixer.Sound(f'./data/Sounds/Water/water_sound_1.mp3')]
         self.footstep_sounds = [pygame.mixer.Sound(f'./data/Sounds/Grass/Grass_hit{i}.mp3') for i in range(1, 5)]
-        
+        self.scissors_sounds = [pygame.mixer.Sound(f'./data/Sounds/Scissors/Scissors_sound1.ogg')]
         self.footstep_sound_index = 0
         self.footstep_timer = Timer(200)  # Adjust the time interval as needed
 
@@ -118,6 +118,8 @@ class Player(pygame.sprite.Sprite):
             self.water_sound_index = (self.water_sound_index + 1) % len(self.water_sounds)
 
         elif self.selected_tool == 'scissors':
+            self.scissors_sounds[self.scissors_sounds_index].play()
+            self.scissors_sounds_index = (self.scissors_sounds_index + 1) % len(self.scissors_sounds)
             for tree in self.tree_sprites.sprites():
                 if tree.rect.collidepoint(self.target_pos) and isinstance(tree, Tree):
                     tree.damage()
