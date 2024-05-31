@@ -2,7 +2,7 @@ import pygame
 from settings import *
 from player import Player
 from overlay import Overlay
-from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle
+from sprites import Generic, Water, WildFlower, Tree, Interaction, Particle, Trader
 from pytmx.util_pygame import load_pygame
 from support import *
 from transition import Transition
@@ -58,6 +58,9 @@ class Level:
         for layer in ['Outside Decoration']:
             for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
                 Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites,LAYERS['Outside Decoration'])
+
+        for obj in tmx_data.get_layer_by_name('Objects'):
+            Trader((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
 
         for layer in ['Hills']:
             for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():

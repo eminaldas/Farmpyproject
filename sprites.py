@@ -42,6 +42,11 @@ class WildFlower(Generic):
         super().__init__(pos, surf, groups)
         self.hitbox = self.rect.copy().inflate(-20, -self.rect.height * 0.9)
 
+class Trader(Generic):
+    def __init__(self, pos, surf, groups):
+        super().__init__(pos,surf,groups)
+        self.hitbox = self.rect.copy().inflate(-20, -self.rect.height * 0.9)
+
 class Particle(Generic):
     def __init__(self, pos, surf, groups, z, duration=200, moving=False):
         super().__init__(pos, surf, groups, z)
