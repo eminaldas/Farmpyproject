@@ -15,7 +15,7 @@ class Level:
     def __init__(self, user_data):
         self.user_data = user_data
         self.display_surface = pygame.display.get_surface()
-        self.all_sprites = CameraGroup()                                         
+        self.all_sprites = CameraGroup()
         self.collision_sprites = pygame.sprite.Group()
         self.tree_sprites = pygame.sprite.Group()
         self.interaction_sprites = pygame.sprite.Group()
@@ -29,7 +29,7 @@ class Level:
         self.sky = Sky()
         self.menu = Menu(self.player, self.toggle_shop)
         self.shop_active = False
-        self.user_photo_size = 50 * 4  # Fotoğraf boyutunu 4 katına çıkarma
+        self.user_photo_size = 50 * 4
         self.user_photo = pygame.transform.scale(pygame.image.load(f'./data/Avatars/{self.user_data["gender"]}/{self.user_data["gender"]}_{self.user_data["photo"] + 1}.png'), (self.user_photo_size, self.user_photo_size))
         self.user_font = pygame.font.Font(None, 36)
 
@@ -45,16 +45,37 @@ class Level:
             Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites)
         water_frames = import_folder('./graphics/water')
         for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
-            Water((x * TILE_SIZE, y * TILE_SIZE), water_frames, [self.all_sprites, self.collision_sprites])
+            Water((x * TILE_SIZE, y * TILE_SIZE), water_frames,self.all_sprites)
+        
+        for layer in ['Ground']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites,LAYERS['ground'])
+
+        for layer in ['Forest Grass']:
+            for x,y,surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites,LAYERS['Forest Grass'])
+
+        for layer in ['Outside Decoration']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites,LAYERS['Outside Decoration'])
+
+        for layer in ['Hills']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, LAYERS['Hills'])
+
         for obj in tmx_data.get_layer_by_name('Decoration'):
             WildFlower((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
         for obj in tmx_data.get_layer_by_name('Trees'):
-            Tree(
-                pos=(obj.x, obj.y),
-                surf=obj.image,
-                groups=[self.all_sprites, self.collision_sprites, self.tree_sprites],
-                name=obj.name,
-                player_add=self.player_add)
+            tree_name = obj.name if obj.name in ['Small', 'Large'] else None
+            if tree_name:
+                Tree(
+                    pos=(obj.x, obj.y),
+                    surf=obj.image,
+                    groups=[self.all_sprites, self.collision_sprites, self.tree_sprites],
+                    name=tree_name,
+                    player_add=self.player_add)
+            else:
+                print(f"Warning: Tree object at ({obj.x}, {obj.y}) has an invalid name: {obj.name}")
         for x, y, surf in tmx_data.get_layer_by_name('Collision').tiles():
             Generic((x * TILE_SIZE, y * TILE_SIZE), pygame.Surface((TILE_SIZE, TILE_SIZE)), self.collision_sprites)
         for obj in tmx_data.get_layer_by_name('Player'):
@@ -67,16 +88,12 @@ class Level:
                     interaction=self.interaction_sprites,
                     soil_layer=self.soil_layer,
                     toggle_shop=self.toggle_shop)
-            if obj.name == "Bed":
+            elif obj.name == "Bed":
                 Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-            if obj.name == 'Trader':
+            elif obj.name == 'Trader':
                 Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
-        Generic(
-            pos=(576, 576),
-            surf=pygame.image.load('./graphics/world/ground.png'),
-            groups=self.all_sprites,
-            z=LAYERS['ground']
-        )
+            elif obj.name == 'Coni':
+                Generic((obj.x, obj.y), obj.image, self.all_sprites, LAYERS['main'])
 
     def player_add(self, item):
         self.player.item_inventory[item] += 1

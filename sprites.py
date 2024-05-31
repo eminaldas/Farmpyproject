@@ -12,21 +12,16 @@ class Generic(pygame.sprite.Sprite):
         self.z = z
         self.hitbox = self.rect.copy().inflate(-self.rect.width * 0.2, -self.rect.height * 0.75)
 
-
 class Interaction(Generic):
     def __init__(self, pos, size, groups, name):
         surf = pygame.Surface(size)
         super().__init__(pos, surf, groups)
         self.name = name
 
-
 class Water(Generic):
     def __init__(self, pos, frames, groups):
-        # animation setup
         self.frames = frames
         self.frame_index = 0
-
-        # sprite setup
         super().__init__(
             pos=pos,
             surf=self.frames[self.frame_index],
@@ -42,12 +37,10 @@ class Water(Generic):
     def update(self, dt):
         self.animate(dt)
 
-
 class WildFlower(Generic):
     def __init__(self, pos, surf, groups):
         super().__init__(pos, surf, groups)
         self.hitbox = self.rect.copy().inflate(-20, -self.rect.height * 0.9)
-
 
 class Particle(Generic):
     def __init__(self, pos, surf, groups, z, duration=200, moving=False):
@@ -57,8 +50,8 @@ class Particle(Generic):
         self.moving = moving
         if self.moving:
             self.pos = pygame.math.Vector2(self.rect.topleft)
-            self.direction = pygame.math.Vector2(randint(-2, 2), -3)  # Randomize the direction a bit for more natural movement
-            self.speed = randint(50, 100)  # Slower movement for particles
+            self.direction = pygame.math.Vector2(randint(-2, 2), -3)
+            self.speed = randint(50, 100)
 
     def update(self, dt):
         if self.moving:
@@ -76,15 +69,22 @@ class Tree(Generic):
         self.stump_surf = pygame.image.load(stump_path).convert_alpha()
         self.invul_timer = Timer(200)
         self.apple_surf = pygame.image.load('./graphics/fruit/apple.png')
+
+        print(f"Initializing Tree with name: {name}")
+
+        # Ensure name is either 'Small' or 'Large'
+        if name not in APPLE_POS:
+            raise ValueError(f"Invalid tree name: {name}")
+
         self.apple_pos = APPLE_POS[name]
         self.apple_sprites = pygame.sprite.Group()
         self.create_fruit()
         self.player_add = player_add
 
     def create_fruit(self):
-        if self.alive:  # Meyve yalnızca ağaç sağken üretilir
+        if self.alive:
             for pos in self.apple_pos:
-                if randint(0, 10) < 2:  # Meyve üretim ihtimali
+                if randint(0, 10) < 2:
                     x = pos[0] + self.rect.left
                     y = pos[1] + self.rect.top
                     Generic(
@@ -127,4 +127,3 @@ class Tree(Generic):
 
     def update(self, dt):
         self.invul_timer.update()
-
