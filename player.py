@@ -74,6 +74,11 @@ class Player(pygame.sprite.Sprite):
         self.user_data = user_data
         self.game_time = datetime(year=1, month=1, day=1, hour=6)
 
+        # Ses indeksleri
+        self.hoe_sound_index = 0
+        self.axe_sound_index = 0
+        self.water_sound_index = 0
+        self.scissors_sound_index = 0
     def import_assets(self):
         self.animations = {
             'up': [], 'down': [], 'left': [], 'right': [],
