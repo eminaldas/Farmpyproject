@@ -11,9 +11,9 @@ users_collection = db.users
 class StartScreen:
     def __init__(self, screen):
         self.screen = screen
-        self.start_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2, 420, 70)
-        self.register_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2 + 100, 420, 70)
-        self.exit_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2 + 200, 420, 70)
+        self.start_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2-55, 420, 70)
+        self.register_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2 +45, 420, 70)
+        self.exit_btn = pygame.Rect(SCREEN_WIDTH // 2 - 210, SCREEN_HEIGHT // 2 + 145, 420, 70)
         self.font = pygame.font.Font(None, 50)
         self.active_btn = None
         self.background_image = pygame.image.load('./graphics/starting/BASLANGIC.png')

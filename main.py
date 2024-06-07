@@ -73,6 +73,8 @@ class Game:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_s:  # 'S' tuşuna basıldığında oyuncu uyur
+                self.level.player.sleep()
         dt = self.clock.tick() / 1000
         self.level.run(dt)
         pygame.display.update()

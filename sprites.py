@@ -75,7 +75,7 @@ class Tree(Generic):
         self.invul_timer = Timer(200)
         self.apple_surf = pygame.image.load('./graphics/fruit/apple.png')
 
-        print(f"Initializing Tree with name: {name}")
+
 
         # Ensure name is either 'Small' or 'Large'
         if name not in APPLE_POS:

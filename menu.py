@@ -2,7 +2,6 @@ import pygame
 from settings import *
 from timer import Timer
 
-
 class Menu:
     def __init__(self, player, toggle_menu):
         # general setup
@@ -120,9 +119,13 @@ class Menu:
                         if current_item in self.player.seed_inventory:
                             self.player.seed_inventory[current_item] += 1
                         elif current_item.startswith('axe') or current_item == 'scissors':
-                            if current_item != 'scissors' and 'axe' in self.player.tools:
-                                self.player.tools.remove('axe')
-                            self.player.tools.append(current_item)
+                            if current_item == 'scissors':
+                                if current_item not in self.player.tools:
+                                    self.player.tools.append(current_item)
+                            else:
+                                if current_item != 'scissors' and 'axe' in self.player.tools:
+                                    self.player.tools.remove('axe')
+                                self.player.tools.append(current_item)
                             self.player.selected_tool = current_item
 
         # clamp the values

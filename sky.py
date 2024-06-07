@@ -7,21 +7,22 @@ from random import randint, choice
 class Sky:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
-        self.full_surf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
-        self.start_color = [255, 255, 255]
-        self.end_color = (38,101,189)
+        self.full_surf = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
+        self.start_color = [255, 255, 255, 0]
+        self.day_time = 24 * 60  # 24 saat
+        self.current_time = 0  # Güneşin doğduğu zamandan itibaren geçen süre (dakika cinsinden)
 
-    def display(self,dt):
-        for index , value in enumerate(self.end_color):
-            if self.start_color[index] > value:
-                self.start_color[index] -= 2*dt
+    def display(self, dt):
+        self.current_time += dt * (24 / self.day_time)  # Gerçek zamanın 4 katı hızında akacak
+        if self.current_time >= self.day_time:
+            self.current_time = 0  # Yeni bir gün başlat
 
         self.full_surf.fill(self.start_color)
-        self.display_surface.blit(self.full_surf, (0,0),special_flags=pygame.BLEND_RGBA_MULT)
+        self.display_surface.blit(self.full_surf, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+
 
 class Drop(Generic):
     def __init__(self, surf, pos, moving, groups, z):
-
         # genel ayarlar
         super().__init__(pos, surf, groups, z)
         self.lifetime = randint(400, 500)
@@ -34,7 +35,6 @@ class Drop(Generic):
             self.speed = randint(200, 250)
 
     def update(self, dt):
-
         # hareket
         if self.moving:
             self.pos += self.direction * self.speed * dt
@@ -43,7 +43,6 @@ class Drop(Generic):
         # timer
         if pygame.time.get_ticks() - self.start_time >= self.lifetime:
             self.kill()
-
 
 class Rain:
     def __init__(self, all_sprites):
