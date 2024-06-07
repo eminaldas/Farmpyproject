@@ -32,6 +32,8 @@ class Level:
         self.menu = Menu(self.player, self.toggle_shop)
         self.shop_active = False
         self.time_scale = 86400 / 300  # 24 saat = 86400 saniye, 5 dakika = 300 saniye
+        pygame.mixer.music.load('./data/Sounds/main/main.mp3')  # Müzik dosyasının yolu
+        pygame.mixer.music.play(-1)
 
     def setup(self):
         tmx_data = load_pygame('./data/map.tmx')

@@ -16,6 +16,7 @@ class Game:
         self.registration_screen = RegistrationScreen(self.screen)
         self.state = 'start'
         self.user_data = None
+        # Müzik ayarları
 
     def run(self):
         while True:
