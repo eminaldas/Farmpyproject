@@ -74,6 +74,9 @@ class Player(pygame.sprite.Sprite):
         self.user_data = user_data
         self.game_time = datetime(year=1, month=1, day=1, hour=6)
 
+        self.current_sound = None
+        self.sound_zones = None
+
         # Ses indeksleri
         self.hoe_sound_index = 0
         self.axe_sound_index = 0
@@ -198,6 +201,28 @@ class Player(pygame.sprite.Sprite):
                 else:
                     self.status = 'left_idle'
                     self.sleep = True
+
+    def check_sound_zones(self, sound_zones):
+        if self.sound_zones is None:
+            self.sound_zones = sound_zones
+
+        for zone in self.sound_zones:
+            if zone['rect'].colliderect(self.hitbox):
+                if self.current_sound != zone['sound']:
+                    self.current_sound = zone['sound']
+                    self.change_footstep_sound(self.current_sound)
+                return
+
+        # Eğer hiçbir ses bölgesinde değilse
+        if self.current_sound != 'Grass':
+            self.current_sound = 'Grass'
+            self.change_footstep_sound(self.current_sound)
+
+    def change_footstep_sound(self, sound):
+        if sound == 'wood':
+            self.footstep_sounds = [pygame.mixer.Sound(f'./data/Sounds/Wood/wood_hit{i}.mp3') for i in range(1, 5)]
+        else:
+            self.footstep_sounds = [pygame.mixer.Sound(f'./data/Sounds/Grass/Grass_hit{i}.mp3') for i in range(1, 5)]
 
     def collision(self, direction):
         for sprite in self.collision_sprites.sprites():

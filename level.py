@@ -99,6 +99,14 @@ class Level:
             elif obj.name == 'Coni':
                 Generic((obj.x, obj.y), obj.image, self.all_sprites, LAYERS['main'])
 
+        # Sounds layer
+        self.sound_zones = []
+        for obj in tmx_data.get_layer_by_name('Sounds'):
+            self.sound_zones.append({
+                'rect': pygame.Rect(obj.x, obj.y, obj.width, obj.height),
+                'sound': obj.name  # Objelerin ismini kullanarak ses dosyasını alıyoruz
+            })
+
     def player_add(self, item):
         self.player.item_inventory[item] += 1
 
@@ -171,6 +179,9 @@ class Level:
             self.transition.play()
         self.player.update_game_time(dt * self.time_scale)
         self.update_day_cycle()
+
+        # Ses bölgelerini kontrol et
+        self.player.check_sound_zones(self.sound_zones)
 
 
 class CameraGroup(pygame.sprite.Group):
