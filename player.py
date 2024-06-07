@@ -1,27 +1,33 @@
 import pygame
 from settings import *
-from support import *
+from support import import_folder
 from timer import Timer
 from sprites import Tree
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta  # Bu satırı ekleyin
+
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop):
+    def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop, user_data):
         super().__init__(group)
+
         self.import_assets()
         self.status = 'down_idle'
         self.frame_index = 0
+
         # Genel ayarlar
         self.image = self.animations[self.status][self.frame_index]
         self.rect = self.image.get_rect(center=pos)
         self.z = LAYERS['main']
+
         # Hareket ayarları
         self.direction = pygame.math.Vector2()
         self.pos = pygame.math.Vector2(self.rect.center)
         self.speed = 600
+
         # Çarpışmalar
         self.hitbox = self.rect.copy().inflate((-126, -70))
         self.collision_sprites = collision_sprites
+
         # Sayaçlar
         self.timers = {
             'tool use': Timer(350, self.use_tool),
@@ -29,24 +35,32 @@ class Player(pygame.sprite.Sprite):
             'seed use': Timer(350, self.use_seed),
             'seed switch': Timer(200)
         }
+
         # Aletler
         self.tools = ['hoe', 'axe', 'water']
         self.tool_index = 0
         self.selected_tool = self.tools[self.tool_index]
+
         # Tohumlar
         self.seeds = ['corn', 'tomato']
         self.seeds_index = 0
         self.selected_seed = self.seeds[self.seeds_index]
+
         # Envanter
         self.item_inventory = {'wood': 0, 'apple': 0, 'corn': 0, 'tomato': 0}
         self.seed_inventory = {'corn': 5, 'tomato': 5}
         self.money = 200
+
         # Etkileşimler
         self.tree_sprites = tree_sprites
         self.interaction = interaction
         self.sleep = False
         self.soil_layer = soil_layer
         self.toggle_shop = toggle_shop
+
+        # Kullanıcı verileri
+        self.user_data = user_data
+
         # Ses dosyaları
         pygame.mixer.init()
         self.hoe_sounds = [pygame.mixer.Sound(f'./data/Sounds/Hoe/hoe_sound_{i}.mp3') for i in range(1, 5)]
@@ -56,12 +70,9 @@ class Player(pygame.sprite.Sprite):
         self.scissors_sounds = [pygame.mixer.Sound(f'./data/Sounds/Scissors/Scissors_sound1.ogg')]
         self.footstep_sound_index = 0
         self.footstep_timer = Timer(200)
-        self.hoe_sound_index = 0
-        self.axe_sound_index = 0
-        self.water_sound_index = 0
-        self.scissors_sounds_index = 0
-        # Saat
-        self.game_time = datetime(2023, 1, 1, 6, 0, 0)
+
+        self.user_data = user_data
+        self.game_time = datetime(year=1, month=1, day=1, hour=6)
 
     def import_assets(self):
         self.animations = {
@@ -226,5 +237,3 @@ class Player(pygame.sprite.Sprite):
 
     def update_game_time(self, dt):
         self.game_time += timedelta(seconds=dt)
-        if self.game_time.hour == 24:  # Zaman gece yarısını geçtiyse
-            self.game_time = self.game_time.replace(hour=6, minute=0, second=0)  # Zamanı 6:00 olarak ayarla

@@ -2,6 +2,7 @@ import pygame
 from settings import *
 from datetime import datetime
 
+
 class Overlay:
     def __init__(self, player):
         self.display_surface = pygame.display.get_surface()
@@ -12,10 +13,12 @@ class Overlay:
             'axe': pygame.image.load(f'{overlay_path}axe.png').convert_alpha(),
             'axe_2': pygame.image.load(f'{overlay_path}axe_2.png').convert_alpha(),
             'axe_3': pygame.image.load(f'{overlay_path}axe_3.png').convert_alpha(),
-            'scissors': pygame.image.load(f'{overlay_path}scissors.png').convert_alpha(),
+            'scissors': pygame.image.load(
+                f'{overlay_path}scissors.png').convert_alpha() if 'scissors' in player.tools else None,
             'water': pygame.image.load(f'{overlay_path}water.png').convert_alpha()
         }
-        self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in player.seeds}
+        self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in
+                           player.seeds}
 
         self.tool_size = 70
         self.bar_color = pygame.Color("#f1e8bf")
@@ -29,6 +32,13 @@ class Overlay:
         # Clock settings
         self.clock_font = pygame.font.Font(None, 60)
         self.clock_rect = pygame.Rect(10, 10, 140, 70)  # Sol üst köşeye taşıma
+
+        # User info settings
+        self.user_photo_size = 50 * 4
+        self.user_photo = pygame.transform.scale(pygame.image.load(
+            f'./data/Avatars/{self.player.user_data["gender"]}/{self.player.user_data["gender"]}_{self.player.user_data["photo"] + 1}.png'),
+                                                 (self.user_photo_size, self.user_photo_size))
+        self.user_font = pygame.font.Font(None, 36)
 
     def draw_tools(self):
         y_offset = SCREEN_HEIGHT - 5 * self.tool_size
@@ -94,9 +104,20 @@ class Overlay:
         clock_rect = clock_surf.get_rect(center=self.clock_rect.center)
         self.display_surface.blit(clock_surf, clock_rect)
 
+    def draw_user_info(self):
+        user_info_rect = pygame.Rect(SCREEN_WIDTH - self.user_photo_size - 20, 10, self.user_photo_size + 20,
+                                     self.user_photo_size + 60)
+        pygame.draw.rect(self.display_surface, self.bar_color, user_info_rect)
+        pygame.draw.rect(self.display_surface, self.border_color, user_info_rect, 2, 5)
+
+        self.display_surface.blit(self.user_photo, (user_info_rect.x + 10, user_info_rect.y + 10))
+        username_surf = self.user_font.render(self.player.user_data['username'], True, '#000000')
+        self.display_surface.blit(username_surf, (user_info_rect.x + 10, user_info_rect.y + self.user_photo_size + 20))
+
     def display(self):
         self.draw_tools()
         self.draw_seeds()
         self.display_text()
         self.draw_inventory()
         self.draw_clock()
+        self.draw_user_info()

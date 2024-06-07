@@ -12,6 +12,7 @@ from random import randint
 from menu import Menu
 from datetime import datetime, timedelta
 
+
 class Level:
     def __init__(self, user_data):
         self.user_data = user_data
@@ -30,22 +31,33 @@ class Level:
         self.sky = Sky()
         self.menu = Menu(self.player, self.toggle_shop)
         self.shop_active = False
-        self.user_photo_size = 50 * 4
-        self.user_photo = pygame.transform.scale(pygame.image.load(
-            f'./data/Avatars/{self.user_data["gender"]}/{self.user_data["gender"]}_{self.user_data["photo"] + 1}.png'),
-                                                 (self.user_photo_size, self.user_photo_size))
-        self.user_font = pygame.font.Font(None, 36)
         self.time_scale = 86400 / 300  # 24 saat = 86400 saniye, 5 dakika = 300 saniye
 
     def setup(self):
         tmx_data = load_pygame('./data/map.tmx')
+        for layer in ['HouseFloor', 'HouseFurnitureBottom']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, LAYERS['house bottom'])
+        for layer in ['HouseWalls', 'HouseFurnitureTop']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites)
         for x, y, surf in tmx_data.get_layer_by_name('Fence').tiles():
             Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites)
         water_frames = import_folder('./graphics/water')
         for x, y, surf in tmx_data.get_layer_by_name('Water').tiles():
             Water((x * TILE_SIZE, y * TILE_SIZE), water_frames, self.all_sprites)
 
+        for layer in ['Ground']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, LAYERS['ground'])
 
+        for layer in ['Forest Grass']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, LAYERS['Forest Grass'])
+
+        for layer in ['Outside Decoration']:
+            for x, y, surf in tmx_data.get_layer_by_name(layer).tiles():
+                Generic((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites, LAYERS['Outside Decoration'])
 
         for obj in tmx_data.get_layer_by_name('Objects'):
             Trader((obj.x, obj.y), obj.image, [self.all_sprites, self.collision_sprites])
@@ -78,19 +90,14 @@ class Level:
                     tree_sprites=self.tree_sprites,
                     interaction=self.interaction_sprites,
                     soil_layer=self.soil_layer,
-                    toggle_shop=self.toggle_shop)
+                    toggle_shop=self.toggle_shop,
+                    user_data=self.user_data)
             elif obj.name == "Bed":
                 Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
             elif obj.name == 'Trader':
                 Interaction((obj.x, obj.y), (obj.width, obj.height), self.interaction_sprites, obj.name)
             elif obj.name == 'Coni':
                 Generic((obj.x, obj.y), obj.image, self.all_sprites, LAYERS['main'])
-
-        Generic(
-            pos=(0, 0),
-            surf=pygame.image.load('./graphics/world/map.png').convert_alpha(),
-            groups=self.all_sprites,
-            z=LAYERS['ground'])
 
     def player_add(self, item):
         self.player.item_inventory[item] += 1
@@ -121,29 +128,6 @@ class Level:
                     self.soil_layer.grid[(plant.rect.centery - 576) // TILE_SIZE][
                         (plant.rect.centerx - 576) // TILE_SIZE].remove('P')
 
-    def draw_user_info(self):
-        self.display_surface.blit(self.user_photo, (SCREEN_WIDTH - self.user_photo_size - 10, 10))
-        username_surf = self.user_font.render(self.user_data['username'], True, '#000000')
-        self.display_surface.blit(username_surf, (SCREEN_WIDTH - self.user_photo_size - 20 - username_surf.get_width(), 20))
-
-    def run(self, dt):
-        self.display_surface.fill('black')
-        self.all_sprites.custom_draw(self.player)
-        if self.shop_active:
-            self.menu.update()
-        else:
-            self.all_sprites.update(dt)
-            self.plant_collisions()
-        self.overlay.display()
-        if self.raining and not self.shop_active:
-            self.rain.update()
-        self.sky.display(dt)
-        if self.player.sleep:
-            self.transition.play()
-        self.draw_user_info()
-        self.player.update_game_time(dt * self.time_scale)
-        self.update_day_cycle()
-
     def update_day_cycle(self):
         current_hour = self.player.game_time.hour
         current_minute = self.player.game_time.minute
@@ -170,6 +154,23 @@ class Level:
             color_value = int(38 * sunrise_progress)
             alpha_value = int(255 * (1 - sunrise_progress) * 0.65)  # %65 opaklık
             self.sky.start_color = pygame.Color(38, 101, 189, alpha_value)
+
+    def run(self, dt):
+        self.display_surface.fill('black')
+        self.all_sprites.custom_draw(self.player)
+        if self.shop_active:
+            self.menu.update()
+        else:
+            self.all_sprites.update(dt)
+            self.plant_collisions()
+        self.overlay.display()
+        if self.raining and not self.shop_active:
+            self.rain.update()
+        self.sky.display(dt)
+        if self.player.sleep:
+            self.transition.play()
+        self.player.update_game_time(dt * self.time_scale)
+        self.update_day_cycle()
 
 
 class CameraGroup(pygame.sprite.Group):
